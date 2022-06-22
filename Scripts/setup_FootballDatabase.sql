@@ -141,18 +141,18 @@ BEGIN
         ('Austria','Europe'), ('Azerbaijan','Europe'), ('Belarus','Europe'),
         ('Belgium','Europe'), ('Bosnia And Herzegovina','Europe'),
         ('Bulgaria','Europe'), ('Croatia','Europe'), ('Cyprus','Europe'),
-        ('Cz','Europe'), ('Denmark','Europe'), ('Estonia','Europe'),
+        ('Cz','Europe'), ('Denmark','Europe'), ('England','Europe'), ('Estonia','Europe'),
         ('Finland','Europe'), ('France','Europe'), ('Georgia','Europe'),
         ('Germany','Europe'), ('Greece','Europe'), ('Hungary','Europe'),
         ('Iceland','Europe'), ('Ireland','Europe'), ('Italy','Europe'),
         ('Latvia','Europe'), ('Liechtenstein','Europe'), ('Lithuania','Europe'),
         ('Luxembourg','Europe'), ('Macedonia','Europe'), ('Malta','Europe'),
         ('Moldova','Europe'), ('Monaco','Europe'), ('Montenegro','Europe'),
-        ('Netherlands','Europe'), ('Norway','Europe'), ('Poland','Europe'),
+        ('Netherlands','Europe'), ('Northern Ireland', 'Europe'), ('Norway','Europe'), ('Poland','Europe'),
         ('Portugal','Europe'), ('Romania','Europe'), ('San Marino','Europe'),
-        ('Serbia','Europe'), ('Slovakia','Europe'), ('Slovenia','Europe'),
+        ('Serbia','Europe'), ('Scotland', 'Europe'), ('Slovakia','Europe'), ('Slovenia','Europe'),
         ('Spain','Europe'), ('Sweden','Europe'), ('Switzerland','Europe'),
-        ('Ukraine','Europe'), ('United Kingdom','Europe'), ('Vatican City','Europe'),
+        ('Ukraine','Europe'), ('Vatican City','Europe'), ('Wales','Europe'),
         ('Antigua And Barbuda','North America'), ('Bahamas','North America'),
         ('Barbados','North America'), ('Belize','North America'),
         ('Canada','North America'), ('Costa Rica','North America'),
@@ -208,30 +208,28 @@ CREATE TABLE FD.STADIUM(
     CHECK(attendance >= 0)
 )
 
-CREATE TABLE FD.PERSON(
+CREATE TABLE FD.REFEREE(
 	id INT IDENTITY(1,1),
 	fname str128 NOT NULL,
 	minit VARCHAR(1),
 	lname str128 NOT NULL,
 	birth_date DATE NOT NULL,
 	country str128 NOT NULL,
-
+	
 	PRIMARY KEY (id),
 	FOREIGN KEY (country) REFERENCES FD.COUNTRY(name),
 )
 
-CREATE TABLE FD.REFEREE(
-	id	INT NOT NULL,
-	
-	PRIMARY KEY (id),
-	FOREIGN KEY (id) REFERENCES FD.PERSON(id) ON DELETE CASCADE
-)
-
 CREATE TABLE FD.COACH(
-	id INT NOT NULL,
+	id INT IDENTITY(1,1),
+	fname str128 NOT NULL,
+	minit VARCHAR(1),
+	lname str128 NOT NULL,
+	birth_date DATE NOT NULL,
+	country str128 NOT NULL,
 	
 	PRIMARY KEY (id),
-	FOREIGN KEY (id) REFERENCES FD.PERSON(id) ON DELETE CASCADE
+	FOREIGN KEY (country) REFERENCES FD.COUNTRY(name),
 )
 
 CREATE TABLE FD.TEAM(
@@ -269,7 +267,12 @@ CREATE TABLE FD.TEAM_PLAYS_COMPETITION(
 )
 
 CREATE TABLE FD.PLAYER(
-	id INT NOT NULL,
+	id INT IDENTITY(1,1),
+	fname str128 NOT NULL,
+	minit VARCHAR(1),
+	lname str128 NOT NULL,
+	birth_date DATE NOT NULL,
+	country str128 NOT NULL,
 	team INT,
 	position VARCHAR(32) NOT NULL,
 	preferred_foot VARCHAR(5) NOT NULL,
@@ -278,13 +281,15 @@ CREATE TABLE FD.PLAYER(
 	shirt_number INT NOT NULL,
 
 	PRIMARY KEY (id),
-	FOREIGN KEY (id) REFERENCES FD.PERSON(id) ON DELETE CASCADE,
+	FOREIGN KEY (country) REFERENCES FD.COUNTRY(name),
 	FOREIGN KEY (team) REFERENCES FD.TEAM(id) ON DELETE SET NULL,
 	FOREIGN KEY (position) REFERENCES FD.POSITION(position),
 	FOREIGN KEY (preferred_foot) REFERENCES FD.FOOT(foot),
 	
     CHECK (weight > 0),
+	CHECK (weight < 300), -- Absurd numbers just to limit option
     CHECK (height > 0),
+	CHECK (height < 300), -- Absurd numbers just to limit option
     CHECK (shirt_number > 0),
     CHECK (shirt_number < 100)
 )
@@ -370,8 +375,8 @@ CREATE TABLE FD.PLAYER_STAT(
 
 CREATE TABLE FD.TEAM_STAT(
 	game INT NOT NULL,
+	home_team BIT NOT NULL,
 	team INT NOT NULL,
-
 	ball_possesion INT NOT NULL,
 	total_shots INT NOT NULL DEFAULT 0,
 	offsides INT NOT NULL DEFAULT 0, 
@@ -379,9 +384,8 @@ CREATE TABLE FD.TEAM_STAT(
 	tackles INT NOT NULL DEFAULT 0,
 	fouls INT NOT NULL DEFAULT 0,
 	corner_kicks INT NOT NULL DEFAULT 0,
-	home_team BIT NOT NULL,
 
-	PRIMARY KEY (game,team),
+	PRIMARY KEY (game,home_team),
 	FOREIGN KEY (game) REFERENCES FD.GAME(id) ON DELETE CASCADE,
 	FOREIGN KEY (team) REFERENCES FD.TEAM(id),
 	
@@ -415,12 +419,14 @@ CREATE TABLE FD.SUBSTITUTION(
 CREATE TABLE FD.MISSCONDUCT(
 	id INT IDENTITY(1,1),
 	game INT NOT NULL,
+	player INT NOT NULL,
 	gametime INT NOT NULL,
 	card VARCHAR(6) NOT NULL,
 	home_team BIT NOT NULL,
 
 	PRIMARY KEY (id),
 	FOREIGN KEY (game) REFERENCES FD.GAME(id) ON DELETE CASCADE,
+	FOREIGN KEY (player) REFERENCES FD.PLAYER(id),
 	FOREIGN KEY (card) REFERENCES FD.CARD(card),
 	
 	CHECK (gametime > 0),
