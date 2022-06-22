@@ -77,7 +77,7 @@ BEGIN
         CHECK (abbreviation IN ('GK', 'DR', 'DC', 'DL', 'DM', 'MR', 'MC', 'ML', 'AM', 'RW', 'LW', 'ST'))
     )
 
-    INSERT INTO FD.POSITION VALUES ('Goalkeeper', 'GK'), ('Defender Right', 'DR'), ('Defender Center', 'DC'), ('Defender Left', 'DL'),  ('Defensive Midfielder', 'DM'), ('Midfielder Right', 'MR'), ('Midfielder Center', 'MR'), ('Midfielder Left', 'ML'), ('Attacking Midfielder', 'AM'), ('Right Winger', 'RW'), ('Left Winger', 'LW'), ('Striker', 'ST')
+    INSERT INTO FD.POSITION VALUES ('Goalkeeper', 'GK'), ('Defender Right', 'DR'), ('Defender Center', 'DC'), ('Defender Left', 'DL'),  ('Defensive Midfielder', 'DM'), ('Midfielder Right', 'MR'), ('Midfielder Center', 'MC'), ('Midfielder Left', 'ML'), ('Attacking Midfielder', 'AM'), ('Right Winger', 'RW'), ('Left Winger', 'LW'), ('Striker', 'ST')
 END
 
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'FD' AND TABLE_NAME = 'CARD')
@@ -199,7 +199,7 @@ CREATE TABLE FD.COMPETITION(
 CREATE TABLE FD.STADIUM(
 	id INT IDENTITY(1,1),
 	attendance INT NOT NULL,
-	name str128 NOT NULL,
+	name str256 NOT NULL,
 	country str128 NOT NULL,
 
 	PRIMARY KEY (id),
