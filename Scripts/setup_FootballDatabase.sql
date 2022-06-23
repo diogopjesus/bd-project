@@ -235,7 +235,7 @@ CREATE TABLE FD.COACH(
 CREATE TABLE FD.TEAM(
 	id INT IDENTITY(1,1),
 	name str256 NOT NULL,
-	abreviation CHAR(3) NOT NULL,
+	abbreviation CHAR(3) NOT NULL,
 	stadium INT,
 	country	str128 NOT NULL,
 	coach INT,
