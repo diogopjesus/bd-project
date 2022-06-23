@@ -76,6 +76,7 @@
     <Compile Include="InfoJogo.Designer.cs">
       <DependentUpon>InfoJogo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Jogo.cs" />
     <Compile Include="PlayerStat.cs">
       <SubType>Form</SubType>
     </Compile>
