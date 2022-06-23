@@ -17,7 +17,7 @@ CREATE VIEW FD.V_TEAM AS
     INNER JOIN FD.COUNTRY co on t.country = co.name
 
 CREATE VIEW FD.V_PLAYER AS
-    SELECT t.id as team_id, t.name as team, p.id as player_id, p.fname + ' ' + COALESCE(p.minit + ' ', '') + p.fname as name, po.position as position, po.abbreviation as position_abv,
+    SELECT t.id as team_id, t.name as team, p.id as player_id, p.fname + ' ' + COALESCE(p.minit + ' ', '') + p.lname as name, po.position as position, po.abbreviation as position_abv,
     p.birth_date as brith_date, c.continent as continent, c.name as country, p.shirt_number, p.preferred_foot, p.height, p.weight 
     FROM FD.PLAYER p
     INNER JOIN FD.COUNTRY c ON p.country = c.name
@@ -32,18 +32,18 @@ CREATE VIEW FD.V_TEAM_IN_COMPETITION AS
     INNER JOIN FD.V_TEAM t ON tpc.team = t.id
 
 CREATE VIEW FD.V_MISSCONDUCT AS
-    SELECT m.game as game_id, ma.home_team as home_team, ma.away_missconduct as away_team, m.card as card,
-    m.home_team as home_player, ma.name as player, m.gametime as gametime
+    SELECT m.game as game_id, ma.home_team as home_team, ma.away_team as away_team, m.card as card,
+    m.home_team as home_player, p.name as player, m.gametime as gametime
     FROM FD.MISSCONDUCT m
     INNER JOIN FD.V_MATCH ma ON m.game = ma.game_id
     INNER JOIN FD.V_PLAYER p ON m.player = p.player_id
 
 CREATE VIEW FD.V_GOAL AS
-    SELECT g.game as game_id, ma.home_team as home_team, ma.away_team as away_team,
-    m.home_team as home_goal, m.gametime as gametime, p1.name as scorer, p2.name as assistant
+    SELECT g.game as game_id, m.home_team as home_team, m.away_team as away_team,
+    m.home_team as home_goal, g.gametime as gametime, p1.name as scorer, p2.name as assistant
     FROM FD.GOAL g
     INNER JOIN FD.V_MATCH m ON g.game = m.game_id
-    INNER JOIN FD.V_PLAYER p1 ON g.scorer = p.player_id
-    INNER JOIN FD.V_PLAYER p2 ON g.assistant = p.player_id
+    INNER JOIN FD.V_PLAYER p1 ON g.scorer = p1.player_id
+    INNER JOIN FD.V_PLAYER p2 ON g.assistant = p2.player_id
 
 -- TODO: SUBSTITUTION

@@ -40,10 +40,9 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button1.Location = new System.Drawing.Point(16, 15);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(12, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(203, 66);
+            this.button1.Size = new System.Drawing.Size(152, 54);
             this.button1.TabIndex = 1;
             this.button1.Text = "Ver Jogos";
             this.button1.UseVisualStyleBackColor = false;
@@ -51,10 +50,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(227, 15);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Location = new System.Drawing.Point(170, 12);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(203, 66);
+            this.button2.Size = new System.Drawing.Size(152, 54);
             this.button2.TabIndex = 2;
             this.button2.Text = "Procurar Competição";
             this.button2.UseVisualStyleBackColor = true;
@@ -63,20 +61,18 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button3.Location = new System.Drawing.Point(437, 15);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Location = new System.Drawing.Point(328, 12);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(203, 66);
+            this.button3.Size = new System.Drawing.Size(152, 54);
             this.button3.TabIndex = 3;
             this.button3.Text = "Ver Jogadores";
             this.button3.UseVisualStyleBackColor = false;
             // 
             // ProcurarEquipas
             // 
-            this.ProcurarEquipas.Location = new System.Drawing.Point(651, 15);
-            this.ProcurarEquipas.Margin = new System.Windows.Forms.Padding(4);
+            this.ProcurarEquipas.Location = new System.Drawing.Point(488, 12);
             this.ProcurarEquipas.Name = "ProcurarEquipas";
-            this.ProcurarEquipas.Size = new System.Drawing.Size(203, 66);
+            this.ProcurarEquipas.Size = new System.Drawing.Size(152, 54);
             this.ProcurarEquipas.TabIndex = 4;
             this.ProcurarEquipas.Text = "Procurar Equipas";
             this.ProcurarEquipas.UseVisualStyleBackColor = true;
@@ -85,17 +81,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 99);
+            this.label1.Location = new System.Drawing.Point(12, 80);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 16);
+            this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 5;
             this.label1.Text = "Jogadores";
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(651, 500);
+            this.button4.Location = new System.Drawing.Point(488, 406);
+            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(203, 42);
+            this.button4.Size = new System.Drawing.Size(152, 34);
             this.button4.TabIndex = 7;
             this.button4.Text = "Adicionar Jogador";
             this.button4.UseVisualStyleBackColor = true;
@@ -104,17 +102,17 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(19, 134);
+            this.listBox1.Location = new System.Drawing.Point(14, 109);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(601, 404);
+            this.listBox1.Size = new System.Drawing.Size(452, 329);
             this.listBox1.TabIndex = 8;
             // 
             // VerJogadores
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(869, 554);
+            this.ClientSize = new System.Drawing.Size(652, 450);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label1);
@@ -123,10 +121,10 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "VerJogadores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VerJogadores";
+            this.Load += new System.EventHandler(this.VerJogadores_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

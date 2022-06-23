@@ -15,21 +15,16 @@ namespace FootballDatabase
     {
 
         private SqlConnection cn;
-        SqlCommand cmd;
+        private int currentGame;
+
         public VerJogos()
         {
             InitializeComponent();
         }
 
-        private void VerJogos_Load(object sender, EventArgs e)
-        {   
-            cn = getSGBDConnection();
-        }
-
-
         private SqlConnection getSGBDConnection()
         {
-            return new SqlConnection("data source=tcp:mednat.ieeta.ot\\SQLSERVER:8101; Initial Catalog = p1g7; uid = p1g7; password=VXze=^/VBx24XQsM");
+            return new SqlConnection("data source= tcp:mednat.ieeta.pt\\SQLSERVER,8101;Initial Catalog=p1g7; uid = p1g7; password = VXze=^/VBx24XQsM;");
         }
 
         private bool verifySGBDConnection()
@@ -41,6 +36,41 @@ namespace FootballDatabase
                 cn.Open();
 
             return cn.State == ConnectionState.Open;
+        }
+
+        private void VerJogos_Load(object sender, EventArgs e)
+        {
+            if (!verifySGBDConnection())
+                return;
+
+            cn = getSGBDConnection();
+
+            Console.WriteLine("SAdasd");
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM FD.V_MATCH", cn);
+            cn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            listBox1.Items.Clear();
+
+            while (reader.Read())
+            {
+                Jogo p = new Jogo();
+
+                p.Competition = reader["competition"].ToString();
+                p.Date = reader["date"].ToString();
+                p.Home_team = reader["home_team"].ToString();
+                p.Home_goals = reader["home_goals"].ToString();
+                p.Away_team = reader["away_team"].ToString();
+                p.Away_goals = reader["away_goals"].ToString();
+                p.Stadium = reader["stadium"].ToString();
+                p.Referee = reader["referee"].ToString();
+                listBox1.Items.Add(p);
+            }
+
+            cn.Close();
+
+            currentGame = 0;
+            //ShowGame();
         }
 
         private void ProcurarCampeonato_Click(object sender, EventArgs e)
@@ -81,31 +111,10 @@ namespace FootballDatabase
         {
             AdicionarJogo f = new AdicionarJogo();
             f.ShowDialog();
-            showGames();
+            showGame();
         }
 
-        public void showGames() {
-            if (!verifySGBDConnection())
-                Console.Write("here");
-                return;
-
-            cmd = cn.CreateCommand();
-            cmd.CommandText = "SELECT date,stadium,home_team,away_team FROM GAME";
-
-            SqlDataReader reader = cmd.ExecuteReader();
-            listBox1.Items.Clear();
-
-            while (reader.Read()) {
-                Jogo g = new Jogo();
-                g.GameDate = reader["date"].ToString();
-                g.Stadium = reader["stadium"].ToString();
-                g.HomeTeam = reader["home_team"].ToString();
-                g.AwayTeam = reader["away_team"].ToString();
-                listBox1.Items.Add(g);
-
-            }
-            cn.Close();
-
+        public void showGame() {
         }
     }
 }
