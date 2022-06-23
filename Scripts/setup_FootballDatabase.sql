@@ -46,10 +46,10 @@ BEGIN
         
         PRIMARY KEY (name),
         
-        CHECK (name IN ('Domestic League', 'Domestic Cup', 'International League (Clubs)', 'International Cup (Clubs)', 'International League (Countries)', 'International Cup (Countries)', 'Friendly Tournament'))
+        CHECK (name IN ('Domestic League', 'Domestic Cup', 'International League', 'International Cup', 'Friendly Tournament'))
     )
 
-    INSERT INTO FD.COMPETITION_TYPE VALUES ('Domestic League'), ('Domestic Cup'), ('International League (Clubs)'), ('International Cup (Clubs)'), ('International League (Countries)'), ('International Cup (Countries)'), ('Friendly Tournament')
+    INSERT INTO FD.COMPETITION_TYPE VALUES ('Domestic League'), ('Domestic Cup'), ('International League'), ('International Cup'), ('Friendly Tournament')
 END
 
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'FD' AND TABLE_NAME = 'FOOT')
@@ -104,7 +104,7 @@ BEGIN
     )
 
     INSERT INTO FD.COUNTRY VALUES ('Algeria','Africa'), ('Angola','Africa'),
-        ('Benin','Africa'), ('Botswana','Africa'), ('Burkina','Africa'),
+        ('Benin','Africa'), ('Botswana','Africa'), ('Burkina Faso','Africa'),
         ('Burundi','Africa'), ('Cameroon','Africa'), ('Cape Verde','Africa'),
         ('Central African Republic','Africa'), ('Chad','Africa'),
         ('Comoros','Africa'), ('Congo','Africa'),
@@ -132,7 +132,7 @@ BEGIN
         ('Kyrgyzstan','Asia'), ('Laos','Asia'), ('Lebanon','Asia'),
         ('Malaysia','Asia'), ('Maldives','Asia'), ('Mongolia','Asia'),
         ('Nepal','Asia'), ('Oman','Asia'), ('Pakistan','Asia'),
-        ('Philippines','Asia'), ('Qatar','Asia'), ('Russian Federation','Asia'),
+        ('Palestine', 'Asia'), ('Philippines','Asia'), ('Qatar','Asia'),
         ('Saudi Arabia','Asia'), ('Singapore','Asia'), ('Sri Lanka','Asia'),
         ('Syria','Asia'), ('Tajikistan','Asia'), ('Thailand','Asia'),
         ('Turkey','Asia'), ('Turkmenistan','Asia'), ('United Arab Emira tes','Asia'),
@@ -141,7 +141,7 @@ BEGIN
         ('Austria','Europe'), ('Azerbaijan','Europe'), ('Belarus','Europe'),
         ('Belgium','Europe'), ('Bosnia And Herzegovina','Europe'),
         ('Bulgaria','Europe'), ('Croatia','Europe'), ('Cyprus','Europe'),
-        ('Cz','Europe'), ('Denmark','Europe'), ('England','Europe'), ('Estonia','Europe'),
+        ('Czech Republic','Europe'), ('Denmark','Europe'), ('England','Europe'), ('Estonia','Europe'),
         ('Finland','Europe'), ('France','Europe'), ('Georgia','Europe'),
         ('Germany','Europe'), ('Greece','Europe'), ('Hungary','Europe'),
         ('Iceland','Europe'), ('Ireland','Europe'), ('Italy','Europe'),
@@ -149,7 +149,7 @@ BEGIN
         ('Luxembourg','Europe'), ('Macedonia','Europe'), ('Malta','Europe'),
         ('Moldova','Europe'), ('Monaco','Europe'), ('Montenegro','Europe'),
         ('Netherlands','Europe'), ('Northern Ireland', 'Europe'), ('Norway','Europe'), ('Poland','Europe'),
-        ('Portugal','Europe'), ('Romania','Europe'), ('San Marino','Europe'),
+        ('Portugal','Europe'), ('Romania','Europe'), ('Russia','Europe'), ('San Marino','Europe'),
         ('Serbia','Europe'), ('Scotland', 'Europe'), ('Slovakia','Europe'), ('Slovenia','Europe'),
         ('Spain','Europe'), ('Sweden','Europe'), ('Switzerland','Europe'),
         ('Ukraine','Europe'), ('Vatican City','Europe'), ('Wales','Europe'),
@@ -164,7 +164,7 @@ BEGIN
         ('Nicaragua','North America'), ('Panama','North America'),
         ('Saint Kitts And Nevis','North America'), ('Saint Lucia','North America'),
         ('Saint Vincent And The Grenadines','North America'),
-        ('Trinidad And Tobago','North America'), ('Us','North America'),
+        ('Trinidad And Tobago','North America'), ('United States of America','North America'),
         ('Australia','Oceania'), ('Fiji','Oceania'), ('Kiribati','Oceania'),
         ('Marshall Islands','Oceania'), ('Micronesia','Oceania'),
         ('Nauru','Oceania'), ('New Zealand','Oceania'), ('Palau','Oceania'),
@@ -312,8 +312,8 @@ CREATE TABLE FD.GAME(
 	FOREIGN KEY (home_team) REFERENCES FD.TEAM(id),
 	FOREIGN KEY (away_team) REFERENCES FD.TEAM(id),
 
-    CHECK (home_goals > 0),
-    CHECK (away_goals > 0),
+    CHECK (home_goals >= 0),
+    CHECK (away_goals >= 0),
     CHECK (home_team != away_team)
 )
 
