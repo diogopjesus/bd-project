@@ -1,4 +1,4 @@
-use p1g7;
+USE p1g7;
 
 -- delete all tables and schema
 DROP TABLE IF EXISTS FD.TEAM_PLAYS_COMPETITION;
