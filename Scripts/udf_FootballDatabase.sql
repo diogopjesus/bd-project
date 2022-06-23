@@ -17,3 +17,4 @@ CREATE FUNCTION UDF_getTeamStatByGame (@game INT, @home_team BIT) RETURNS TABLE 
             FROM FD.TEAM_STAT ts
             INNER JOIN FD.V_TEAM t ON ts.team = t.id
             WHERE ts.game = @game AND ts.home_team = @home_team)
+

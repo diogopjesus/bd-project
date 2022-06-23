@@ -28,8 +28,6 @@ namespace FootballDatabase
 
             cn = getSGBDConnection();
 
-            Console.WriteLine("SAdasd");
-            
             SqlCommand cmd = new SqlCommand("SELECT * FROM FD.V_PLAYER", cn);
             cn.Open();
             SqlDataReader reader = cmd.ExecuteReader();
@@ -122,7 +120,6 @@ namespace FootballDatabase
         {
             AdicionarJogador f = new AdicionarJogador();
             f.ShowDialog();
-
         }
 
 

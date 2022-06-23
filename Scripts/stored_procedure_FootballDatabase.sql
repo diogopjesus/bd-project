@@ -70,8 +70,7 @@ GO;
 
 CREATE PROCEDURE GetTeamGames @Team INT
     AS
-    SELECT * FROM FD.GAME game WHERE game.away_team = @Team;
-    SELECT * FROM FD.GAME game WHERE game.home_team = @Team;
+    SELECT * FROM FD.V_MATCH game WHERE game.away_id = @Team OR game.home_id = @Team;
 GO;   
 
 CREATE PROCEDURE GetPlayersInTeam @Team INT
@@ -79,7 +78,7 @@ CREATE PROCEDURE GetPlayersInTeam @Team INT
     SELECT * FROM FD.PLAYER player WHERE player.team = @Team;
 GO;
 
-
+exec GetTeamGames 1;
 
 
 /* PROCEDURES TO ADD */
@@ -103,7 +102,7 @@ AS
     BEGIN TRY
         BEGIN TRANSACTION
             INSERT INTO FD.GAME (@id, @home_goals, @away_goals, @date, @id_stadium, @id_competition, @id_referee, @home_team, @away_team)
-            INSERT INTO FD.TEAM_STAT (@id, @home_team, 0, 0, 0, 0, 0, 0, 0, 1); /*Start Empty for Home Team stats*/
+            INSERT INTO FD.TEAM_STAT VALUES (@home_team, 0, 0, 0, 0, 0, 0, 0, 1); /*Start Empty for Home Team stats*/
             INSERT INTO FD.TEAM_STAT (@id, @away_team, 0, 0, 0, 0, 0, 0, 0, 0); /*Start Empty for Away Team stats*/
              PRINT 'Game Added with Success!'
         COMMIT
@@ -119,7 +118,7 @@ CREATE PROCEDURE add_MissConduct (@id INT, @id_game INT, @game_time INT, @card V
 AS
     BEGIN TRY
         INSERT INTO FD.MISSCONDUCT(@id, @id_game, @game_time, @card, @team)
-        PRINT 'MissConduct Added with Success!'
+        PRINT ('MissConduct Added with Success!')
     END TRY
     BEGIN CATCH 
         PRINT ERROR_MESSAGE()
@@ -131,7 +130,7 @@ CREATE PROCEDURE add_Team (@id INT, @name VARCHAR(256), @abreviation CHAR(3), @i
 AS
     BEGIN TRY
         INSERT INTO FD.TEAM (@id, @name, @abreviation, @id_stadium, @country, @id_coach)
-        INSERT INTO FD.TEAM_PLAYS_COMPETITION (@id, @id_competition, 0, 0, 0, 0, 0)
+        INSERT INTO FD.TEAM_PLAYS_COMPETITION VALUES (@id, @id_competition, 0, 0, 0, 0, 0)
         PRINT 'Team Added with Success!'
     END TRY
     BEGIN CATCH 
@@ -233,56 +232,4 @@ AS
     BEGIN CATCH 
         PRINT ERROR_MESSAGE()
     END CATCH
-END
-
-
-/* APAGAR JOGADORES */
-GO
-CREATE PROCEDURE delete_Player_id( @id VARCHAR(20))
-AS
-BEGIN
-	BEGIN TRY
-		BEGIN TRANSACTION
-			DELETE FROM FD.PLAYER WHERE id=@id; 
-			PRINT 'Success'
-		COMMIT
-	END TRY
-	BEGIN CATCH
-		PRINT ERROR_MESSAGE()
-		ROLLBACK
-	END CATCH
-END
-
-/* APAGAR ESTÁDIOS */
-GO
-CREATE PROCEDURE delete_stadium_id( @id VARCHAR(20))
-AS
-BEGIN
-	BEGIN TRY
-		BEGIN TRANSACTION
-			DELETE FROM FD.STADIUM WHERE id=@id; 
-			PRINT 'Success'
-		COMMIT
-	END TRY
-	BEGIN CATCH
-		PRINT ERROR_MESSAGE()
-		ROLLBACK
-	END CATCH
-END
-
-/* APAGAR JOGOS */
-GO
-CREATE PROCEDURE delete_game_id( @id VARCHAR(20))
-AS
-BEGIN
-	BEGIN TRY
-		BEGIN TRANSACTION
-			DELETE FROM FD.GAME WHERE id=@id; 
-			PRINT 'Success'
-		COMMIT
-	END TRY
-	BEGIN CATCH
-		PRINT ERROR_MESSAGE()
-		ROLLBACK
-	END CATCH
 END

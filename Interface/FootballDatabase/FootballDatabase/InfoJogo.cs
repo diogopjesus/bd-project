@@ -28,7 +28,7 @@ namespace FootballDatabase
 
         private SqlConnection getSGBDConnection()
         {
-            return new SqlConnection("data source= tcp:mednat.ieeta.pt\\SQLSERVER,8101;Initial Catalog=p2g6; uid = p1g7; password = VXze=^/VBx24XQsM");
+            return new SqlConnection("data source= tcp:mednat.ieeta.pt\\SQLSERVER,8101;Initial Catalog=p1g7; uid = p1g7; password = VXze=^/VBx24XQsM");
         }
 
         private bool verifySGBDConnection()

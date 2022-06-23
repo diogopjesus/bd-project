@@ -85,6 +85,7 @@
     <Compile Include="AdicionarJogo.Designer.cs">
       <DependentUpon>AdicionarJogo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Team.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="InfoJogo.cs">
       <SubType>Form</SubType>

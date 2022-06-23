@@ -1,6 +1,6 @@
 CREATE VIEW FD.V_MATCH AS
-    SELECT g.id AS game_id, c.name AS competition, g.date AS date, t1.name AS home_team, g.home_goals AS home_goals,
-    t2.name AS away_team, g.away_goals AS away_goals, s.name AS stadium, r.fname + ' ' + COALESCE(r.minit + ' ', '') + r.lname AS referee
+    SELECT g.id AS game_id, c.name AS competition, g.date AS date, t1.id as home_id, t1.name AS home_team, g.home_goals AS home_goals,
+    t2.id as away_id, t2.name AS away_team, g.away_goals AS away_goals, s.name AS stadium, r.fname + ' ' + COALESCE(r.minit + ' ', '') + r.lname AS referee
     FROM FD.GAME g
     LEFT OUTER JOIN FD.REFEREE r ON g.referee = r.id
     INNER JOIN FD.TEAM t1 ON g.home_team = t1.id
