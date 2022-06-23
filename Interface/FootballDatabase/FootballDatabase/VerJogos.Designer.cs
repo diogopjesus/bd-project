@@ -128,6 +128,7 @@
             this.Name = "VerJogos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
+            this.Load += new System.EventHandler(this.VerJogos_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -22,7 +22,7 @@ namespace FootballDatabase
         }
 
         private void VerJogos_Load(object sender, EventArgs e)
-        {
+        {   
             cn = getSGBDConnection();
         }
 
@@ -81,26 +81,30 @@ namespace FootballDatabase
         {
             AdicionarJogo f = new AdicionarJogo();
             f.ShowDialog();
+            showGames();
         }
 
         public void showGames() {
+            if (!verifySGBDConnection())
+                Console.Write("here");
+                return;
+
             cmd = cn.CreateCommand();
             cmd.CommandText = "SELECT date,stadium,home_team,away_team FROM GAME";
 
-            try {
-                cn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-                listBox1.Items.Clear();
+            SqlDataReader reader = cmd.ExecuteReader();
+            listBox1.Items.Clear();
 
-                while (reader.Read()) {
-                    GAME g = new GAME();
-                    Data = reader["date"].ToString();
-                    Stadium = reader["stadium"].ToString();
-                    HomeTeam = reader["home_team"].ToString();
-                    AwayTeam = reader["away_team"].ToString();
+            while (reader.Read()) {
+                Jogo g = new Jogo();
+                g.GameDate = reader["date"].ToString();
+                g.Stadium = reader["stadium"].ToString();
+                g.HomeTeam = reader["home_team"].ToString();
+                g.AwayTeam = reader["away_team"].ToString();
+                listBox1.Items.Add(g);
 
-                }
             }
+            cn.Close();
 
         }
     }
