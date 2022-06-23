@@ -50,21 +50,21 @@ namespace FootballDatabase
             SqlCommand cmd = new SqlCommand("SELECT * FROM FD.V_MATCH", cn);
             cn.Open();
             SqlDataReader reader = cmd.ExecuteReader();
-            listBox1.Items.Clear();
+            dataGridView1.Rows.Clear();
 
             while (reader.Read())
             {
                 Jogo p = new Jogo();
 
-                p.Competition = reader["competition"].ToString();
-                p.Date = reader["date"].ToString();
-                p.Home_team = reader["home_team"].ToString();
-                p.Home_goals = reader["home_goals"].ToString();
-                p.Away_team = reader["away_team"].ToString();
-                p.Away_goals = reader["away_goals"].ToString();
-                p.Stadium = reader["stadium"].ToString();
-                p.Referee = reader["referee"].ToString();
-                listBox1.Items.Add(p);
+                String Competition = reader["competition"].ToString();
+                String Date = reader["date"].ToString();
+                String Home_team = reader["home_team"].ToString();
+                String Home_goals = reader["home_goals"].ToString();
+                String Away_team = reader["away_team"].ToString();
+                String Away_goals = reader["away_goals"].ToString();
+                String Stadium = reader["stadium"].ToString();
+                String Referee = reader["referee"].ToString();
+                dataGridView1.Rows.Add(Competition,Date,Home_team,Home_goals,Away_team,Away_goals,Stadium,Referee);
             }
 
             cn.Close();
@@ -115,6 +115,11 @@ namespace FootballDatabase
         }
 
         public void showGame() {
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
