@@ -48,10 +48,10 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
-            this.PrefFoot = new System.Windows.Forms.ComboBox();
-            this.Position = new System.Windows.Forms.ComboBox();
-            this.Team = new System.Windows.Forms.ComboBox();
-            this.Country = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // button1
@@ -223,47 +223,47 @@
             this.textBox7.Size = new System.Drawing.Size(82, 22);
             this.textBox7.TabIndex = 19;
             // 
-            // PrefFoot
+            // comboBox1
             // 
-            this.PrefFoot.FormattingEnabled = true;
-            this.PrefFoot.Location = new System.Drawing.Point(113, 228);
-            this.PrefFoot.Name = "PrefFoot";
-            this.PrefFoot.Size = new System.Drawing.Size(133, 24);
-            this.PrefFoot.TabIndex = 20;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(113, 228);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(133, 24);
+            this.comboBox1.TabIndex = 20;
             // 
-            // Position
+            // comboBox2
             // 
-            this.Position.FormattingEnabled = true;
-            this.Position.Location = new System.Drawing.Point(113, 198);
-            this.Position.Name = "Position";
-            this.Position.Size = new System.Drawing.Size(133, 24);
-            this.Position.TabIndex = 21;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(113, 198);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(133, 24);
+            this.comboBox2.TabIndex = 21;
             // 
-            // Team
+            // comboBox3
             // 
-            this.Team.FormattingEnabled = true;
-            this.Team.Location = new System.Drawing.Point(113, 170);
-            this.Team.Name = "Team";
-            this.Team.Size = new System.Drawing.Size(133, 24);
-            this.Team.TabIndex = 22;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(113, 170);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(133, 24);
+            this.comboBox3.TabIndex = 22;
             // 
-            // Country
+            // comboBox4
             // 
-            this.Country.FormattingEnabled = true;
-            this.Country.Location = new System.Drawing.Point(113, 140);
-            this.Country.Name = "Country";
-            this.Country.Size = new System.Drawing.Size(133, 24);
-            this.Country.TabIndex = 23;
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(113, 140);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(133, 24);
+            this.comboBox4.TabIndex = 23;
             // 
             // AdicionarJogador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 443);
-            this.Controls.Add(this.Country);
-            this.Controls.Add(this.Team);
-            this.Controls.Add(this.Position);
-            this.Controls.Add(this.PrefFoot);
+            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox5);
@@ -287,7 +287,7 @@
             this.Name = "AdicionarJogador";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdicionarJogador";
-            this.Load += new System.EventHandler(this.VerCountry_Load);
+            this.Load += new System.EventHandler(this.AdicionarJogador_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -315,9 +315,9 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.ComboBox PrefFoot;
-        private System.Windows.Forms.ComboBox Position;
-        private System.Windows.Forms.ComboBox Team;
-        private System.Windows.Forms.ComboBox Country;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboBox4;
     }
 }
