@@ -432,4 +432,3 @@ CREATE TABLE FD.MISSCONDUCT(
 	CHECK (gametime > 0),
 	CHECK (gametime <= 90)
 )
-

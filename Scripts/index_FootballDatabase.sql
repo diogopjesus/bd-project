@@ -1,3 +1,4 @@
+USE p1g7;
 
 CREATE INDEX idx_player ON FD.PLAYER(team); 
 

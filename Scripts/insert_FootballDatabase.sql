@@ -6,8 +6,6 @@ DECLARE @TeamID INT;
 DECLARE @LeagueID INT;
 DECLARE @CupID INT;
 
-/* STADIUMS */
-
 /********* PORTUGAL *********/
 
 INSERT INTO FD.COMPETITION VALUES ('Liga Portugal Bwin', 'Domestic League', 'Europe', 'Portugal')
