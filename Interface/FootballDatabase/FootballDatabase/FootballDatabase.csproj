@@ -85,7 +85,11 @@
     <Compile Include="AdicionarJogo.Designer.cs">
       <DependentUpon>AdicionarJogo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Team.cs" />
+    <Compile Include="Competicao.cs" />
+    <Compile Include="CompType.cs" />
+    <Compile Include="Continente.cs" />
+    <Compile Include="Country.cs" />
+    <Compile Include="Foot.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="InfoJogo.cs">
       <SubType>Form</SubType>
@@ -100,12 +104,15 @@
     <Compile Include="PlayerStat.Designer.cs">
       <DependentUpon>PlayerStat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Positions.cs" />
+    <Compile Include="Referee.cs" />
     <Compile Include="Standings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Standings.Designer.cs">
       <DependentUpon>Standings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Team.cs" />
     <Compile Include="VerJogos.cs">
       <SubType>Form</SubType>
     </Compile>

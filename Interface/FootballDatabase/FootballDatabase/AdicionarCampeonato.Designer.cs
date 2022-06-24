@@ -35,7 +35,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.compType = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
@@ -104,13 +104,13 @@
             this.textBox1.Size = new System.Drawing.Size(111, 20);
             this.textBox1.TabIndex = 6;
             // 
-            // comboBox1
+            // compType
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(72, 61);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(111, 21);
-            this.comboBox1.TabIndex = 7;
+            this.compType.FormattingEnabled = true;
+            this.compType.Location = new System.Drawing.Point(72, 61);
+            this.compType.Name = "compType";
+            this.compType.Size = new System.Drawing.Size(111, 21);
+            this.compType.TabIndex = 7;
             // 
             // comboBox2
             // 
@@ -135,7 +135,7 @@
             this.ClientSize = new System.Drawing.Size(248, 212);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.compType);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -146,6 +146,7 @@
             this.Name = "AdicionarCampeonato";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AdicionarCampeonato";
+            this.Load += new System.EventHandler(this.VerCountry_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,7 +161,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox compType;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox comboBox3;
     }

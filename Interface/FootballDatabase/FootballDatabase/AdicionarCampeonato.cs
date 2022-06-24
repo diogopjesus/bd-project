@@ -58,6 +58,20 @@ namespace FootballDatabase
             }
 
             cn.Close();
+            cmd = new SqlCommand("SELECT * FROM FD.COMPETITION_TYPE", cn);
+            cn.Open();
+            reader = cmd.ExecuteReader();
+
+            compType.Items.Clear();
+
+            while (reader.Read())
+            {
+                CompType c = new CompType();
+                c.Name = reader["name"].ToString();
+                compType.Items.Add(c);
+            }
+
+            cn.Close();
 
             //ShowCompetition();
         }

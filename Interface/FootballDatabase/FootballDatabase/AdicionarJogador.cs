@@ -72,6 +72,21 @@ namespace FootballDatabase
                 Position.Items.Add(p);
             }
 
+            cn.Close(); 
+
+            cmd = new SqlCommand("SELECT * FROM FD.TEAM", cn);
+            cn.Open();
+            reader = cmd.ExecuteReader();
+
+            Team.Items.Clear();
+
+            while (reader.Read())
+            {
+                Team t = new Team();
+                t.Name = reader["name"].ToString();
+                Team.Items.Add(t);
+            }
+
             cn.Close();
 
             //ShowCompetition();
