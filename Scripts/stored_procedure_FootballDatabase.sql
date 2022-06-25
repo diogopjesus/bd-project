@@ -78,9 +78,6 @@ CREATE PROCEDURE GetPlayersInTeam @Team INT
     SELECT * FROM FD.PLAYER player WHERE player.team = @Team;
 GO;
 
-exec GetTeamGames 1;
-
-
 /* PROCEDURES TO ADD */
 
 GO
