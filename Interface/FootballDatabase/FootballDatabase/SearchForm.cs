@@ -287,7 +287,7 @@ namespace FootballDatabase
                 Match m = new Match();
                 m.Id = (int)reader["game_id"];
                 m.Competition = (string)reader["competition"];
-                m.Date = (string)reader["date"];
+                m.Date = ((DateTime)reader["date"]).ToString("yyyy-MM-dd");
                 m.Home_id = (int)reader["home_id"];
                 m.Home_team = (string)reader["home_team"];
                 m.Home_goals = (int)reader["home_goals"];
