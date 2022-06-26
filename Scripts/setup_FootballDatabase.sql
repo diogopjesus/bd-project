@@ -317,17 +317,6 @@ CREATE TABLE FD.GAME(
     CHECK (home_team != away_team)
 )
 
-CREATE TABLE FD.PLAYER_PARTICIPATES_GAME(
-	game INT NOT NULL,
-	player INT NOT NULL,
-	home_team BIT NOT NULL,
-	starter BIT NOT NULL,
-
-	PRIMARY KEY (game,player),
-	FOREIGN KEY (game) REFERENCES FD.GAME(id) ON DELETE CASCADE,
-	FOREIGN KEY (player) REFERENCES FD.PLAYER(id) ON DELETE CASCADE
-)
-
 CREATE TABLE FD.GOAL(
     id INT IDENTITY(1,1),
     game INT NOT NULL,
@@ -338,8 +327,8 @@ CREATE TABLE FD.GOAL(
     
     PRIMARY KEY (id),
     FOREIGN KEY (game) REFERENCES FD.GAME(id) ON DELETE CASCADE,
-    FOREIGN KEY (scorer) REFERENCES FD.PLAYER(id),
-    FOREIGN KEY (assistant) REFERENCES FD.PLAYER(id),
+    FOREIGN KEY (scorer) REFERENCES FD.PLAYER(id) ON DELETE SET NULL,
+    FOREIGN KEY (assistant) REFERENCES FD.PLAYER(id) ON DELETE  SET NULL,
     
 
     CHECK (gametime > 0),
@@ -347,6 +336,7 @@ CREATE TABLE FD.GOAL(
 
 )
 
+-- Functions also as player participates game
 CREATE TABLE FD.PLAYER_STAT(
 	game INT NOT NULL,
 	player INT NOT NULL,
@@ -358,6 +348,7 @@ CREATE TABLE FD.PLAYER_STAT(
 	shots INT NOT NULL DEFAULT 0,
 	tackles INT NOT NULL DEFAULT 0,
 	home_team BIT NOT NULL,
+	starter BIT NOT NULL,
 
 	PRIMARY KEY (game,player),
 	FOREIGN KEY (game) REFERENCES FD.GAME(id) ON DELETE CASCADE,
@@ -377,7 +368,7 @@ CREATE TABLE FD.TEAM_STAT(
 	game INT NOT NULL,
 	home_team BIT NOT NULL,
 	team INT NOT NULL,
-	ball_possesion INT NOT NULL,
+	ball_possession INT NOT NULL,
 	total_shots INT NOT NULL DEFAULT 0,
 	offsides INT NOT NULL DEFAULT 0, 
 	passes INT NOT NULL DEFAULT 0,
@@ -389,8 +380,8 @@ CREATE TABLE FD.TEAM_STAT(
 	FOREIGN KEY (game) REFERENCES FD.GAME(id) ON DELETE CASCADE,
 	FOREIGN KEY (team) REFERENCES FD.TEAM(id),
 	
-	CHECK (ball_possesion > 0),
-	CHECK (ball_possesion < 100),
+	CHECK (ball_possession > 0),
+	CHECK (ball_possession < 100),
 	CHECK (total_shots >= 0),
 	CHECK (offsides >= 0),
 	CHECK (passes >= 0),
@@ -416,7 +407,7 @@ CREATE TABLE FD.SUBSTITUTION(
 	CHECK (gametime <= 90)
 )
 
-CREATE TABLE FD.MISSCONDUCT(
+CREATE TABLE FD.MISCONDUCT(
 	id INT IDENTITY(1,1),
 	game INT NOT NULL,
 	player INT NOT NULL,

@@ -160,71 +160,43 @@ END
 -- Constraints on new game
 --   Can not have a game with the one of the teams on the same day
 --   Teams participating in game should belong to competition
---   Referee cant participate in two games on the same day
 --   Update team on competition table
 CREATE TRIGGER TR_insert_new_game ON FD.GAME
 AFTER INSERT
 AS
 BEGIN
+    DECLARE @homeID INT
+    DECLARE @homeGoals INT
+    DECLARE @awayID INT
+    DECLARE @awayGoals INT
+    DECLARE @competitionID INT
+    SELECT @homeID=home_team, @homeGoals=home_goals, @awayID=away_team, @awayGoals=away_goals, @competitionID=competition FROM INSERTED
     
-END
-
--- Constraints on player participation on game
---   Player team confirmation
---   Should only have 11 starters on each team
---   should only have 3 participating subs on each team
-CREATE TRIGGER TR_insert_new_player_p_game ON FD.PLAYER_PARTICIPATES_GAME
-AFTER INSERT
-AS
-BEGIN
+    DECLARE @tab TABLE (id INT);
+    INSERT INTO @tab(id) SELECT team FROM TEAM_PLAYS_COMPETITION WHERE competition=@competitionID
+    IF (@homeID NOT IN (SELECT * FROM @tab)) OR (@awayID NOT IN (SELECT * FROM @tab))
+    BEGIN
+        RAISERROR('ERROR: One of the teams does not play in the competition!',16,1)
+        ROLLBACK TRANSACTION
+        RETURN
+    END
     
-END
-
--- Constraints on player stat
---   Players team confirmation
---   Update team_stat
-CREATE TRIGGER TR_insert_new_player_stat ON FD.PLAYER_STAT
-AFTER INSERT
-AS
-BEGIN
-
-END
-
--- Disable inserts on team_stat
-CREATE TRIGGER TR_insert_new_team_stat ON FD.TEAM_STAT
-AFTER INSERT
-AS
-    RAISERROR('ERROR: Team stats are generated automatically based on the player stats!', 16, 1)
-
--- Constraints on player participation on goal
---   Players team confirmation
---   Players should be on the field
-CREATE TRIGGER TR_insert_new_goal ON FD.GOAL
-AFTER INSERT
-AS
-BEGIN
+    IF @homeGoals > @awayGoals
+    BEGIN
+        UPDATE TEAM_PLAYS_COMPETITION SET wins=wins+1, goals_scored=goals_scored+@homeGoals, goals_conceded=goals_conceded+@awayGoals WHERE team=@homeID AND competition=@competitionID
+        UPDATE TEAM_PLAYS_COMPETITION SET loses=loses+1, goals_scored=goals_scored+@awayGoals, goals_conceded=goals_conceded+@homeGoals WHERE team=@awayID AND competition=@competitionID
+    END
     
+    IF @homeGoals < @awayGoals
+    BEGIN
+        UPDATE TEAM_PLAYS_COMPETITION SET loses=loses+1, goals_scored=goals_scored+@homeGoals, goals_conceded=goals_conceded+@awayGoals WHERE team=@homeID AND competition=@competitionID
+        UPDATE TEAM_PLAYS_COMPETITION SET wins=wins+1, goals_scored=goals_scored+@awayGoals, goals_conceded=goals_conceded+@homeGoals WHERE team=@awayID AND competition=@competitionID
+    END
+    
+    IF @homeGoals = @awayGoals
+    BEGIN
+        UPDATE TEAM_PLAYS_COMPETITION SET draws=draws+1, goals_scored=goals_scored+@homeGoals, goals_conceded=goals_conceded+@awayGoals WHERE team=@homeID AND competition=@competitionID
+        UPDATE TEAM_PLAYS_COMPETITION SET draws=draws+1, goals_scored=goals_scored+@awayGoals, goals_conceded=goals_conceded+@homeGoals WHERE team=@awayID AND competition=@competitionID
+    END
 END
 
--- Constraints on player participation on missconduct
---   Player team confirmation
---   Player should be on the field
-CREATE TRIGGER TR_insert_new_missconduct ON FD.MISSCONDUCT
-AFTER INSERT
-AS
-BEGIN
-    
-END
-
--- Constraints on player participation on substitution
---   Players team confirmation
---   Players out should be on the field
---   Players in should not be on the field
---   Players time played should be the same as in player_stat (sub time)
---   Max. 3 subs per team on competitions that are not friendlies
-CREATE TRIGGER TR_insert_new_substitution ON FD.SUBSTITUTION
-AFTER INSERT
-AS
-BEGIN
-    
-END
