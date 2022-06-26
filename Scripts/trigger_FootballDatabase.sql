@@ -160,13 +160,44 @@ END
 -- Constraints on new game
 --   Can not have a game with the one of the teams on the same day
 --   Teams participating in game should belong to competition
---   Referee cant participate in two games on the same day
 --   Update team on competition table
 CREATE TRIGGER TR_insert_new_game ON FD.GAME
 AFTER INSERT
 AS
 BEGIN
+    DECLARE @homeID INT
+    DECLARE @homeGoals INT
+    DECLARE @awayID INT
+    DECLARE @awayGoals INT
+    DECLARE @competitionID INT
+    SELECT @homeID=home_team, @homeGoals=home_goals, @awayID=away_team, @awayGoals=away_goals, @competitionID=competition FROM INSERTED
     
+    DECLARE @tab TABLE (id INT);
+    INSERT INTO @tab(id) SELECT team FROM TEAM_PLAYS_COMPETITION WHERE competition=@competitionID
+    IF (@homeID NOT IN (SELECT * FROM @tab)) OR (@awayID NOT IN (SELECT * FROM @tab))
+    BEGIN
+        RAISERROR('ERROR: One of the teams does not play in the competition!',16,1)
+        ROLLBACK TRANSACTION
+        RETURN
+    END
+    
+    IF @homeGoals > @awayGoals
+    BEGIN
+        UPDATE TEAM_PLAYS_COMPETITION SET wins=wins+1, goals_scored=goals_scored+@homeGoals, goals_conceded=goals_conceded+@awayGoals WHERE team=@homeID AND competition=@competitionID
+        UPDATE TEAM_PLAYS_COMPETITION SET loses=loses+1, goals_scored=goals_scored+@awayGoals, goals_conceded=goals_conceded+@homeGoals WHERE team=@awayID AND competition=@competitionID
+    END
+    
+    IF @homeGoals < @awayGoals
+    BEGIN
+        UPDATE TEAM_PLAYS_COMPETITION SET loses=loses+1, goals_scored=goals_scored+@homeGoals, goals_conceded=goals_conceded+@awayGoals WHERE team=@homeID AND competition=@competitionID
+        UPDATE TEAM_PLAYS_COMPETITION SET wins=wins+1, goals_scored=goals_scored+@awayGoals, goals_conceded=goals_conceded+@homeGoals WHERE team=@awayID AND competition=@competitionID
+    END
+    
+    IF @homeGoals = @awayGoals
+    BEGIN
+        UPDATE TEAM_PLAYS_COMPETITION SET draws=draws+1, goals_scored=goals_scored+@homeGoals, goals_conceded=goals_conceded+@awayGoals WHERE team=@homeID AND competition=@competitionID
+        UPDATE TEAM_PLAYS_COMPETITION SET draws=draws+1, goals_scored=goals_scored+@awayGoals, goals_conceded=goals_conceded+@homeGoals WHERE team=@awayID AND competition=@competitionID
+    END
 END
 
 -- Constraints on player participation on game
@@ -206,10 +237,10 @@ BEGIN
     
 END
 
--- Constraints on player participation on missconduct
+-- Constraints on player participation on misconduct
 --   Player team confirmation
 --   Player should be on the field
-CREATE TRIGGER TR_insert_new_missconduct ON FD.MISSCONDUCT
+CREATE TRIGGER TR_insert_new_missconduct ON FD.MISCONDUCT
 AFTER INSERT
 AS
 BEGIN
