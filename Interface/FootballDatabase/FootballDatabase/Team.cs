@@ -18,6 +18,14 @@ namespace FootballDatabase
         private string _coach;
         public Team()
         {
+            _id = -1;
+            _abbreviation = String.Empty;
+            _name = String.Empty;
+            _continent = String.Empty;
+            _country = String.Empty;
+            _stadium = String.Empty;
+            _attendance = -1;
+            _coach = String.Empty;
         }
         public int Id { get => _id; set => _id = value; }
         public string Abbreviation { get => _abbreviation; set => _abbreviation = value; }

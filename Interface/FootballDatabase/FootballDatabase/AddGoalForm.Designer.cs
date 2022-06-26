@@ -64,6 +64,7 @@
             // 
             // button2
             // 
+            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button2.Location = new System.Drawing.Point(12, 150);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(220, 23);
@@ -73,12 +74,14 @@
             // 
             // button1
             // 
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.Location = new System.Drawing.Point(12, 121);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(220, 23);
             this.button1.TabIndex = 29;
             this.button1.Text = "Confirm";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // checkBox1
             // 
@@ -90,6 +93,7 @@
             this.checkBox1.TabIndex = 28;
             this.checkBox1.Text = "Home Team?";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // label3
             // 
@@ -138,6 +142,7 @@
             this.Name = "AddGoalForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddGoalForm";
+            this.Load += new System.EventHandler(this.AddGoalForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

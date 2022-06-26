@@ -71,7 +71,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(220, 23);
             this.button2.TabIndex = 2;
-            this.button2.Text = "Confirm";
+            this.button2.Text = "Close";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -153,6 +153,7 @@
             this.timePlayedTextBox.ReadOnly = true;
             this.timePlayedTextBox.Size = new System.Drawing.Size(52, 23);
             this.timePlayedTextBox.TabIndex = 10;
+            this.timePlayedTextBox.TextChanged += new System.EventHandler(this.timePlayedTextBox_TextChanged);
             // 
             // goalsTextBox
             // 
@@ -161,6 +162,7 @@
             this.goalsTextBox.ReadOnly = true;
             this.goalsTextBox.Size = new System.Drawing.Size(52, 23);
             this.goalsTextBox.TabIndex = 11;
+            this.goalsTextBox.TextChanged += new System.EventHandler(this.goalsTextBox_TextChanged);
             // 
             // assistsTextBox
             // 
@@ -227,6 +229,7 @@
             this.Name = "PlayerStatForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PlayerStat";
+            this.Load += new System.EventHandler(this.PlayerStatForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

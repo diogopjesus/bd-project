@@ -180,7 +180,7 @@
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(367, 408);
             this.dataGridView1.TabIndex = 8;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // matchesId
             // 
@@ -270,11 +270,10 @@
             this.competitionsDataGridView.RowTemplate.Height = 25;
             this.competitionsDataGridView.Size = new System.Drawing.Size(367, 379);
             this.competitionsDataGridView.TabIndex = 7;
-            this.competitionsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.competitionsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.competitionsDataGridView_CellContentClick);
             // 
             // competitionsId
             // 
-            this.competitionsId.Frozen = true;
             this.competitionsId.HeaderText = "ID";
             this.competitionsId.MinimumWidth = 23;
             this.competitionsId.Name = "competitionsId";
@@ -491,6 +490,7 @@
             this.dataGridView3.RowTemplate.Height = 25;
             this.dataGridView3.Size = new System.Drawing.Size(367, 379);
             this.dataGridView3.TabIndex = 12;
+            this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 

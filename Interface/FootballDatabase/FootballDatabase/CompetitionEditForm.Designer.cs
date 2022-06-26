@@ -144,6 +144,7 @@
             this.button1.TabIndex = 14;
             this.button1.Text = "Add Team";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -153,6 +154,7 @@
             this.button2.TabIndex = 15;
             this.button2.Text = "Remove Team";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // comboBox4
             // 
@@ -170,6 +172,7 @@
             this.button3.TabIndex = 17;
             this.button3.Text = "Confirm";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 

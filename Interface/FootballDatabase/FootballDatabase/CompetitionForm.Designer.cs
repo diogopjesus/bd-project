@@ -38,6 +38,9 @@
             this.classificationPos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.classificationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.classificationPoints = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.classificationWins = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.classificationsDraws = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.classificationLosses = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.classificationGS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.classificationGC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.classificationGD = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -101,7 +104,7 @@
             this.matchesMatch.MinimumWidth = 278;
             this.matchesMatch.Name = "matchesMatch";
             this.matchesMatch.ReadOnly = true;
-            this.matchesMatch.Width = 278;
+            this.matchesMatch.Width = 370;
             // 
             // tabClassification
             // 
@@ -123,6 +126,9 @@
             this.classificationPos,
             this.classificationName,
             this.classificationPoints,
+            this.classificationWins,
+            this.classificationsDraws,
+            this.classificationLosses,
             this.classificationGS,
             this.classificationGC,
             this.classificationGD});
@@ -157,6 +163,30 @@
             this.classificationPoints.Name = "classificationPoints";
             this.classificationPoints.ReadOnly = true;
             this.classificationPoints.Width = 50;
+            // 
+            // classificationWins
+            // 
+            this.classificationWins.HeaderText = "W";
+            this.classificationWins.MinimumWidth = 30;
+            this.classificationWins.Name = "classificationWins";
+            this.classificationWins.ReadOnly = true;
+            this.classificationWins.Width = 30;
+            // 
+            // classificationsDraws
+            // 
+            this.classificationsDraws.HeaderText = "D";
+            this.classificationsDraws.MinimumWidth = 30;
+            this.classificationsDraws.Name = "classificationsDraws";
+            this.classificationsDraws.ReadOnly = true;
+            this.classificationsDraws.Width = 30;
+            // 
+            // classificationLosses
+            // 
+            this.classificationLosses.HeaderText = "L";
+            this.classificationLosses.MinimumWidth = 30;
+            this.classificationLosses.Name = "classificationLosses";
+            this.classificationLosses.ReadOnly = true;
+            this.classificationLosses.Width = 30;
             // 
             // classificationGS
             // 
@@ -198,6 +228,7 @@
             this.competitionDeleteButton.TabIndex = 2;
             this.competitionDeleteButton.Text = "Delete Competition";
             this.competitionDeleteButton.UseVisualStyleBackColor = true;
+            this.competitionDeleteButton.Click += new System.EventHandler(this.competitionDeleteButton_Click);
             // 
             // competitionEditButton
             // 
@@ -207,6 +238,7 @@
             this.competitionEditButton.TabIndex = 3;
             this.competitionEditButton.Text = "Edit Competition";
             this.competitionEditButton.UseVisualStyleBackColor = true;
+            this.competitionEditButton.Click += new System.EventHandler(this.competitionEditButton_Click);
             // 
             // CompetitionForm
             // 
@@ -220,6 +252,7 @@
             this.Name = "CompetitionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Competition";
+            this.Load += new System.EventHandler(this.CompetitionForm_Load);
             this.tabControl.ResumeLayout(false);
             this.tabMatches.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.matchesDataGridView)).EndInit();
@@ -235,8 +268,6 @@
         private TabControl tabControl;
         private TabPage tabMatches;
         private DataGridView matchesDataGridView;
-        private DataGridViewTextBoxColumn matchesDate;
-        private DataGridViewTextBoxColumn matchesMatch;
         private TabPage tabClassification;
         private DataGridView classificationDataGridView;
         private DataGridViewTextBoxColumn classificationPos;
@@ -248,5 +279,10 @@
         private TextBox competitionNameTextBox;
         private Button competitionDeleteButton;
         private Button competitionEditButton;
+        private DataGridViewTextBoxColumn matchesDate;
+        private DataGridViewTextBoxColumn matchesMatch;
+        private DataGridViewTextBoxColumn classificationWins;
+        private DataGridViewTextBoxColumn classificationsDraws;
+        private DataGridViewTextBoxColumn classificationLosses;
     }
 }

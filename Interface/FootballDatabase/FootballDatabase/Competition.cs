@@ -20,6 +20,15 @@ namespace FootballDatabase
         public string Continent { get => _continent; set => _continent = value; }
         public string Country { get => _country; set => _country = value; }
 
+        public Competition()
+        {
+            this._id = -1;
+            this._name = string.Empty;
+            this._type = string.Empty;
+            this._continent = string.Empty;
+            this._country = string.Empty;
+        }
+
         public override string? ToString()
         {
             return Country + " - " + Name;

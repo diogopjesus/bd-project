@@ -69,6 +69,7 @@ namespace FootballDatabase
                 Competition c = new Competition();
                 c.Id = (int)reader["id"];
                 c.Name = (string)reader["name"];
+                c.Type = (String)reader["type"];
                 c.Continent = (string)reader["continent"];
                 c.Country = (string)reader["country"];
 
@@ -78,7 +79,7 @@ namespace FootballDatabase
                 playersCompetitionComboBox.Items.Add(c);
 
                 // add to tab
-                Object[] row = { c.Id, c.Country, c.Name };
+                Object[] row = { c.Id, c.Country, c };
                 competitionsDataGridView.Rows.Add(row);
             }
             reader.Close();
@@ -138,14 +139,23 @@ namespace FootballDatabase
                 t.Name = (string)reader["name"];
                 t.Continent = (string)reader["continent"];
                 t.Country = (string)reader["country"];
-                t.Stadium = (string)reader["stadium"];
-                t.Attendance = (int)reader["attendance"];
-                t.Coach = (string)reader["coach"];
+                if (reader["stadium"] == DBNull.Value)
+                    t.Stadium = "";
+                else
+                    t.Stadium = (string)reader["stadium"];
+                if (reader["attendance"] == DBNull.Value)
+                    t.Attendance = -1;
+                else
+                    t.Attendance = (int)reader["attendance"];
+                if (reader["coach"] == DBNull.Value)
+                    t.Coach = "";
+                else
+                    t.Coach = (string)reader["coach"];
 
                 // add to players combo box
                 playersTeamComboBox.Items.Add(t);
 
-                Object[] row = { t.Country, t.Abbreviation, t.Name };
+                Object[] row = { t.Country, t.Abbreviation, t };
                 dataGridView2.Rows.Add(row);
             }
             reader.Close();
@@ -156,8 +166,16 @@ namespace FootballDatabase
             while(reader.Read())
             {
                 Player p = new Player();
-                p.Team_id = (int)reader["team_id"];
-                p.Team = (string)reader["team"];
+                if (reader["team_id"] is System.DBNull || reader["team_id"] == null)
+                {
+                    p.Team_id = -1;
+                    p.Team = "(No club)";
+                }
+                else
+                {
+                    p.Team_id = (int)reader["team_id"];
+                    p.Team = (string)reader["team"];
+                }
                 p.Player_id = (int)reader["player_id"];
                 p.Name = (string)reader["name"];
                 p.Position = (string)reader["position"];
@@ -170,7 +188,7 @@ namespace FootballDatabase
                 p.Height = (int)reader["height"];
                 p.Weight = (decimal)reader["weight"];
 
-                object[] row = { p.Team, p.Position_abv, p.Name };
+                object[] row = { p.Team, p.Position_abv, p };
                 dataGridView3.Rows.Add(row);
             }
             reader.Close();
@@ -189,7 +207,7 @@ namespace FootballDatabase
 
         private SqlConnection getSGBDConnection()
         {
-            return new SqlConnection("data source= tcp:mednat.ieeta.pt\\SQLSERVER,8101;Initial Catalog=p1g7; uid = p1g7; password = VXze=^/VBx24XQsM;");
+            return new SqlConnection("data source= tcp:mednat.ieeta.pt\\SQLSERVER,8101;Initial Catalog=p1g7; uid = p1g7; password = VXze=^/VBx24XQsM;TrustServerCertificate=True;");
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -209,9 +227,25 @@ namespace FootballDatabase
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1) return; //check if row index is not selected
+            int id = (int)this.dataGridView1[0, e.RowIndex].Value;
 
+            MatchForm form = new MatchForm(id);
+            this.Hide();
+            form.ShowDialog();
+            this.Show();
         }
 
+        private void competitionsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1) return; //check if row index is not selected
+            Competition c = (Competition)this.competitionsDataGridView[2, e.RowIndex].Value;
+
+            CompetitionForm form = new CompetitionForm(c.Id);
+            this.Hide();
+            form.ShowDialog();
+            this.Show();
+        }
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
@@ -219,7 +253,13 @@ namespace FootballDatabase
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1) return; //check if row index is not selected
+            Team team = (Team)this.dataGridView2[2, e.RowIndex].Value;
 
+            TeamForm form = new TeamForm(team.Id);
+            this.Hide();
+            form.ShowDialog();
+            this.Show();
         }
 
         private void matchesAddButton_Click(object sender, EventArgs e)
@@ -303,11 +343,6 @@ namespace FootballDatabase
             reader.Close();
         }
 
-        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void matchesSearchText_TextChanged(object sender, EventArgs e)
         {
 
@@ -383,11 +418,12 @@ namespace FootballDatabase
                 Competition c = new Competition();
                 c.Id = (int)reader["id"];
                 c.Name = (string)reader["name"];
+                c.Type = (string)reader["type"];
                 c.Continent = (string)reader["continent"];
                 c.Country = (string)reader["country"];
 
                 // add to tab
-                Object[] row = { c.Id, c.Country, c.Name };
+                Object[] row = { c.Id, c.Country, c };
                 competitionsDataGridView.Rows.Add(row);
             }
             reader.Close();
@@ -432,9 +468,18 @@ namespace FootballDatabase
                 t.Name = (string)reader["name"];
                 t.Continent = (string)reader["continent"];
                 t.Country = (string)reader["country"];
-                t.Stadium = (string)reader["stadium"];
-                t.Attendance = (int)reader["attendance"];
-                t.Coach = (string)reader["coach"];
+                if (reader["stadium"] == DBNull.Value)
+                    t.Stadium = "";
+                else
+                    t.Stadium = (string)reader["stadium"];
+                if (reader["attendance"] == DBNull.Value)
+                    t.Attendance = -1;
+                else
+                    t.Attendance = (int)reader["attendance"];
+                if (reader["coach"] == DBNull.Value)
+                    t.Coach = "";
+                else
+                    t.Coach = (string)reader["coach"];
 
                 Object[] row = { t.Country, t.Abbreviation, t };
                 dataGridView2.Rows.Add(row);
@@ -463,6 +508,7 @@ namespace FootballDatabase
                 Competition c = new Competition();
                 c.Id = (int)reader["id"];
                 c.Name = (string)reader["name"];
+                c.Type = (string)reader["type"];
                 c.Continent = (string)reader["continent"];
                 c.Country = (string)reader["country"];
 
@@ -545,8 +591,16 @@ namespace FootballDatabase
             while (reader.Read())
             {
                 Player p = new Player();
-                p.Team_id = (int)reader["team_id"];
-                p.Team = (string)reader["team"];
+                if (reader["team_id"] is System.DBNull || reader["team_id"] == null)
+                {
+                    p.Team_id = -1;
+                    p.Team = "(No club)";
+                }
+                else
+                {
+                    p.Team_id = (int)reader["team_id"];
+                    p.Team = (string)reader["team"];
+                }
                 p.Player_id = (int)reader["player_id"];
                 p.Name = (string)reader["name"];
                 p.Position = (string)reader["position"];
@@ -563,6 +617,17 @@ namespace FootballDatabase
                 dataGridView3.Rows.Add(row);
             }
             reader.Close();
+        }
+
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1) return; //check if row index is not selected
+            Player player = (Player)this.dataGridView3[2, e.RowIndex].Value;
+
+            PlayerForm form = new PlayerForm(player.Player_id);
+            this.Hide();
+            form.ShowDialog();
+            this.Show();
         }
     }
 }
