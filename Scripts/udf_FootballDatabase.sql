@@ -4,6 +4,7 @@ CREATE FUNCTION UDF_getGameParticipants (@game INT, @home_team BIT) RETURNS TABL
             INNER JOIN FD.V_PLAYER p ON pcg.player = p.player_id
             WHERE pcg.home_team = @home_team AND pcg.game = @game)
 
+
 CREATE FUNCTION UDF_getPlayerStatByGameAndPlayer (@game INT, @player INT) RETURNS TABLE AS
     RETURN (SELECT ps.game as game, p.team as team, p.name as name, p.position as position, ps.time_played,
             ps.goals, ps.assists, ps.touches, ps.passes, ps.shots, ps.tackles

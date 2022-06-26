@@ -7,6 +7,7 @@ CREATE VIEW FD.V_MATCH AS
     INNER JOIN FD.COMPETITION c ON g.competition = c.id
     LEFT OUTER JOIN FD.STADIUM s ON g.stadium = s.id
 
+
 CREATE VIEW FD.V_TEAM AS
     SELECT t.id as id, t.abbreviation AS abbreviation, t.name AS name, co.continent AS continent, co.name AS country, s.name AS stadium,
     s.attendance AS attendance, c.fname + ' ' + COALESCE(c.minit + ' ', '') + c.lname as coach
@@ -14,6 +15,7 @@ CREATE VIEW FD.V_TEAM AS
     LEFT OUTER JOIN FD.STADIUM s ON t.stadium = s.id
     LEFT OUTER JOIN FD.COACH c ON t.coach = c.id
     INNER JOIN FD.COUNTRY co on t.country = co.name
+
 
 CREATE VIEW FD.V_PLAYER AS
     SELECT t.id as team_id, t.name as team, p.id as player_id, p.fname + ' ' + COALESCE(p.minit + ' ', '') + p.lname as name, po.position as position, po.abbreviation as position_abv,
@@ -23,12 +25,14 @@ CREATE VIEW FD.V_PLAYER AS
     INNER JOIN FD.POSITION po ON p.position = po.position
     LEFT OUTER JOIN FD.TEAM t ON p.team = t.id
 
+
 CREATE VIEW FD.V_TEAM_IN_COMPETITION AS
     SELECT c.continent as continent, c.country as country,  c.id as competition_id, c.name as competition, t.id as team_id, t.abbreviation as abbreviation, t.name as name,
     t.stadium as stadium, t.attendance as attendance, t.coach as coach, tpc.wins as wins, tpc.draws as draws, tpc.loses as losses, tpc.goals_scored as goals_scored, tpc.goals_conceded as goals_conceded   
     FROM FD.TEAM_PLAYS_COMPETITION tpc
     INNER JOIN FD.COMPETITION c ON tpc.competition = c.id
     INNER JOIN FD.V_TEAM t ON tpc.team = t.id
+
 
 CREATE VIEW FD.V_MISCONDUCT AS
     SELECT m.game AS game,
