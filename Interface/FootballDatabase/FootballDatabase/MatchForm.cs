@@ -193,7 +193,7 @@ namespace FootballDatabase
             statsAwayTextBox.Text = match.Away_abv;
 
             DataRow dr = ds.Tables[0].Rows[0];
-            statsHomePossessionTextBox.Text = dr["ball_possesion"].ToString();
+            statsHomePossessionTextBox.Text = dr["ball_possession"].ToString();
             statsHomeShotsTextBox.Text = dr["total_shots"].ToString();
             statsHomeOffsidesTextBox.Text = dr["offsides"].ToString();
             statsHomePassesTextBox.Text = dr["passes"].ToString();
@@ -202,7 +202,7 @@ namespace FootballDatabase
             statsHomeCornersTextBox.Text = dr["corner_kicks"].ToString();
 
             dr = ds.Tables[1].Rows[0];
-            statsAwayPossessionTextBox.Text = dr["ball_possesion"].ToString();
+            statsAwayPossessionTextBox.Text = dr["ball_possession"].ToString();
             statsAwayShotsTextBox.Text = dr["total_shots"].ToString();
             statsAwayOffsidesTextBox.Text = dr["offsides"].ToString();
             statsAwayPassesTextBox.Text = dr["passes"].ToString();
