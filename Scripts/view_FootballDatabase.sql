@@ -73,3 +73,5 @@ CREATE VIEW FD.V_SUBSTITUTION AS
     INNER JOIN FD.V_MATCH m ON s.game = m.game_id
     INNER JOIN FD.V_PLAYER p1 ON s.player_in = p1.player_id
     INNER JOIN FD.V_PLAYER p2 ON s.player_out = p2.player_id
+    
+

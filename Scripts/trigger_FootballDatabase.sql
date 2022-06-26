@@ -157,6 +157,7 @@ BEGIN
     END
 END
 
+
 -- Constraints on new game
 --   Can not have a game with the one of the teams on the same day
 --   Teams participating in game should belong to competition
