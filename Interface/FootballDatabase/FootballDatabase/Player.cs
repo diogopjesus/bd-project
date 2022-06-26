@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FootballDatabase
 {
-    internal class Player
+    public class Player
     {
         private int _team_id;
         private string _team;
@@ -24,6 +24,19 @@ namespace FootballDatabase
 
         public Player()
         {
+            _team_id = -1;
+            _team = String.Empty;
+            _player_id = -1;
+            _name = String.Empty;
+            _position = String.Empty;
+            _position_abv = String.Empty;
+            _birth_date = String.Empty;
+            _continent = String.Empty;
+            _country = String.Empty;
+            _shirt_number = -1;
+            _preferred_foot = String.Empty;
+            _height = -1;
+            _weight = -1;
         }
 
         public int Team_id { get => _team_id; set => _team_id = value; }

@@ -82,9 +82,11 @@
             this.checkBox1.TabIndex = 3;
             this.checkBox1.Text = "Home Team?";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // button2
             // 
+            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button2.Location = new System.Drawing.Point(12, 151);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(220, 23);
@@ -95,6 +97,7 @@
             // 
             // button1
             // 
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.Location = new System.Drawing.Point(12, 122);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(220, 23);
@@ -143,6 +146,7 @@
             this.Name = "AddSubstitutionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddSubstitutionForm";
+            this.Load += new System.EventHandler(this.AddSubstitutionForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

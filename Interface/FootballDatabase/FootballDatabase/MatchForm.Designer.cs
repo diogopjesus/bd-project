@@ -1,6 +1,6 @@
 ﻿namespace FootballDatabase
 {
-    partial class MatchFrom
+    partial class MatchForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,21 +30,13 @@
         {
             this.tabMenu = new System.Windows.Forms.TabControl();
             this.tabDetails = new System.Windows.Forms.TabPage();
-            this.detailsDeleteMisconductButton = new System.Windows.Forms.Button();
-            this.detailsDeleteGoalButton = new System.Windows.Forms.Button();
-            this.detailsDeleteSubstitutionButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.detailsAddMisconductButton = new System.Windows.Forms.Button();
-            this.detailsAddGoalButton = new System.Windows.Forms.Button();
-            this.detailsAddSubstitutionButton = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabLineups = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.lineupsAwayTeamNameTextBox = new System.Windows.Forms.TextBox();
             this.lineupsHomeTeamNameTextBox = new System.Windows.Forms.TextBox();
             this.lineupsHomeDataGridView = new System.Windows.Forms.DataGridView();
@@ -100,13 +92,7 @@
             // 
             // tabDetails
             // 
-            this.tabDetails.Controls.Add(this.detailsDeleteMisconductButton);
-            this.tabDetails.Controls.Add(this.detailsDeleteGoalButton);
-            this.tabDetails.Controls.Add(this.detailsDeleteSubstitutionButton);
             this.tabDetails.Controls.Add(this.label1);
-            this.tabDetails.Controls.Add(this.detailsAddMisconductButton);
-            this.tabDetails.Controls.Add(this.detailsAddGoalButton);
-            this.tabDetails.Controls.Add(this.detailsAddSubstitutionButton);
             this.tabDetails.Controls.Add(this.listBox1);
             this.tabDetails.Controls.Add(this.textBox4);
             this.tabDetails.Controls.Add(this.textBox3);
@@ -121,33 +107,6 @@
             this.tabDetails.UseVisualStyleBackColor = true;
             this.tabDetails.Click += new System.EventHandler(this.tabDetails_Click);
             // 
-            // detailsDeleteMisconductButton
-            // 
-            this.detailsDeleteMisconductButton.Location = new System.Drawing.Point(264, 420);
-            this.detailsDeleteMisconductButton.Name = "detailsDeleteMisconductButton";
-            this.detailsDeleteMisconductButton.Size = new System.Drawing.Size(113, 24);
-            this.detailsDeleteMisconductButton.TabIndex = 12;
-            this.detailsDeleteMisconductButton.Text = "Del Misconduct";
-            this.detailsDeleteMisconductButton.UseVisualStyleBackColor = true;
-            // 
-            // detailsDeleteGoalButton
-            // 
-            this.detailsDeleteGoalButton.Location = new System.Drawing.Point(129, 420);
-            this.detailsDeleteGoalButton.Name = "detailsDeleteGoalButton";
-            this.detailsDeleteGoalButton.Size = new System.Drawing.Size(129, 24);
-            this.detailsDeleteGoalButton.TabIndex = 11;
-            this.detailsDeleteGoalButton.Text = "Delete Goal";
-            this.detailsDeleteGoalButton.UseVisualStyleBackColor = true;
-            // 
-            // detailsDeleteSubstitutionButton
-            // 
-            this.detailsDeleteSubstitutionButton.Location = new System.Drawing.Point(10, 420);
-            this.detailsDeleteSubstitutionButton.Name = "detailsDeleteSubstitutionButton";
-            this.detailsDeleteSubstitutionButton.Size = new System.Drawing.Size(113, 24);
-            this.detailsDeleteSubstitutionButton.TabIndex = 10;
-            this.detailsDeleteSubstitutionButton.Text = "Delete Sub";
-            this.detailsDeleteSubstitutionButton.UseVisualStyleBackColor = true;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -157,43 +116,14 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "-";
             // 
-            // detailsAddMisconductButton
-            // 
-            this.detailsAddMisconductButton.Location = new System.Drawing.Point(264, 390);
-            this.detailsAddMisconductButton.Name = "detailsAddMisconductButton";
-            this.detailsAddMisconductButton.Size = new System.Drawing.Size(113, 24);
-            this.detailsAddMisconductButton.TabIndex = 8;
-            this.detailsAddMisconductButton.Text = "Add Misconduct";
-            this.detailsAddMisconductButton.UseVisualStyleBackColor = true;
-            this.detailsAddMisconductButton.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // detailsAddGoalButton
-            // 
-            this.detailsAddGoalButton.Location = new System.Drawing.Point(129, 390);
-            this.detailsAddGoalButton.Name = "detailsAddGoalButton";
-            this.detailsAddGoalButton.Size = new System.Drawing.Size(129, 24);
-            this.detailsAddGoalButton.TabIndex = 7;
-            this.detailsAddGoalButton.Text = "Add Goal";
-            this.detailsAddGoalButton.UseVisualStyleBackColor = true;
-            this.detailsAddGoalButton.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // detailsAddSubstitutionButton
-            // 
-            this.detailsAddSubstitutionButton.Location = new System.Drawing.Point(10, 390);
-            this.detailsAddSubstitutionButton.Name = "detailsAddSubstitutionButton";
-            this.detailsAddSubstitutionButton.Size = new System.Drawing.Size(113, 24);
-            this.detailsAddSubstitutionButton.TabIndex = 6;
-            this.detailsAddSubstitutionButton.Text = "Add Sub";
-            this.detailsAddSubstitutionButton.UseVisualStyleBackColor = true;
-            this.detailsAddSubstitutionButton.Click += new System.EventHandler(this.button2_Click);
-            // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
+            this.listBox1.HorizontalScrollbar = true;
             this.listBox1.ItemHeight = 15;
             this.listBox1.Location = new System.Drawing.Point(8, 35);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(367, 349);
+            this.listBox1.Size = new System.Drawing.Size(367, 409);
             this.listBox1.TabIndex = 4;
             // 
             // textBox4
@@ -221,6 +151,7 @@
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(65, 23);
             this.textBox2.TabIndex = 1;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox1
@@ -230,12 +161,10 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(65, 23);
             this.textBox1.TabIndex = 0;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tabLineups
             // 
-            this.tabLineups.Controls.Add(this.button1);
-            this.tabLineups.Controls.Add(this.button2);
             this.tabLineups.Controls.Add(this.lineupsAwayTeamNameTextBox);
             this.tabLineups.Controls.Add(this.lineupsHomeTeamNameTextBox);
             this.tabLineups.Controls.Add(this.lineupsHomeDataGridView);
@@ -248,25 +177,6 @@
             this.tabLineups.Text = "Line-ups";
             this.tabLineups.UseVisualStyleBackColor = true;
             this.tabLineups.Click += new System.EventHandler(this.tabLineups_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(8, 421);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(367, 24);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Delete Player";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(8, 391);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(367, 24);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Add Player";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // lineupsAwayTeamNameTextBox
             // 
@@ -299,8 +209,9 @@
             this.lineupsHomeDataGridView.ReadOnly = true;
             this.lineupsHomeDataGridView.RowHeadersVisible = false;
             this.lineupsHomeDataGridView.RowTemplate.Height = 25;
-            this.lineupsHomeDataGridView.Size = new System.Drawing.Size(176, 351);
+            this.lineupsHomeDataGridView.Size = new System.Drawing.Size(176, 410);
             this.lineupsHomeDataGridView.TabIndex = 3;
+            this.lineupsHomeDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.lineupsHomeDataGridView_CellContentClick);
             // 
             // homePosition
             // 
@@ -331,8 +242,9 @@
             this.lineupsAwayDataGridView.ReadOnly = true;
             this.lineupsAwayDataGridView.RowHeadersVisible = false;
             this.lineupsAwayDataGridView.RowTemplate.Height = 25;
-            this.lineupsAwayDataGridView.Size = new System.Drawing.Size(176, 351);
+            this.lineupsAwayDataGridView.Size = new System.Drawing.Size(176, 410);
             this.lineupsAwayDataGridView.TabIndex = 2;
+            this.lineupsAwayDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.lineupsAwayDataGridView_CellContentClick);
             // 
             // positionAway
             // 
@@ -600,8 +512,9 @@
             this.matchEditMatchButton.TabIndex = 6;
             this.matchEditMatchButton.Text = "Edit Match";
             this.matchEditMatchButton.UseVisualStyleBackColor = true;
+            this.matchEditMatchButton.Click += new System.EventHandler(this.matchEditMatchButton_Click);
             // 
-            // MatchFrom
+            // MatchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -609,10 +522,10 @@
             this.Controls.Add(this.matchEditMatchButton);
             this.Controls.Add(this.matchDeleteMatchButton);
             this.Controls.Add(this.tabMenu);
-            this.Name = "MatchFrom";
+            this.Name = "MatchForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Match";
-            this.Load += new System.EventHandler(this.FeedForm_Load);
+            this.Load += new System.EventHandler(this.MatchForm_Load);
             this.tabMenu.ResumeLayout(false);
             this.tabDetails.ResumeLayout(false);
             this.tabDetails.PerformLayout();
@@ -636,11 +549,8 @@
         private TabPage tabStats;
         private TextBox textBox4;
         private TextBox textBox3;
-        private Button detailsAddSubstitutionButton;
         private ListBox listBox1;
         private Button matchDeleteMatchButton;
-        private Button detailsAddMisconductButton;
-        private Button detailsAddGoalButton;
         private Label label1;
         private TextBox lineupsAwayTeamNameTextBox;
         private TextBox lineupsHomeTeamNameTextBox;
@@ -674,10 +584,5 @@
         private TextBox statsAwayPossessionTextBox;
         private TextBox statsHomePossessionTextBox;
         private Button matchEditMatchButton;
-        private Button detailsDeleteMisconductButton;
-        private Button detailsDeleteGoalButton;
-        private Button detailsDeleteSubstitutionButton;
-        private Button button1;
-        private Button button2;
     }
 }

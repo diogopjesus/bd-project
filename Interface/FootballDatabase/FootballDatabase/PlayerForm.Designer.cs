@@ -64,6 +64,7 @@
             this.playerEditButton.TabIndex = 5;
             this.playerEditButton.Text = "Edit Player";
             this.playerEditButton.UseVisualStyleBackColor = true;
+            this.playerEditButton.Click += new System.EventHandler(this.playerEditButton_Click);
             // 
             // playerDeleteButton
             // 

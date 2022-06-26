@@ -35,16 +35,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.addCoachButton = new System.Windows.Forms.Button();
-            this.addStadiumButton = new System.Windows.Forms.Button();
-            this.teamNametextBox = new System.Windows.Forms.TextBox();
+            this.teamNameTextBox = new System.Windows.Forms.TextBox();
             this.abbreviationTextBox = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.stadiumComboBox = new System.Windows.Forms.ComboBox();
             this.coachComboBox = new System.Windows.Forms.ComboBox();
             this.lineupsHomeDataGridView = new System.Windows.Forms.DataGridView();
             this.homePosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameHome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.lineupsHomeDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,6 +54,7 @@
             this.teamEditButton.TabIndex = 5;
             this.teamEditButton.Text = "Edit Team";
             this.teamEditButton.UseVisualStyleBackColor = true;
+            this.teamEditButton.Click += new System.EventHandler(this.teamEditButton_Click);
             // 
             // teamDeleteButton
             // 
@@ -91,7 +90,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(8, 131);
+            this.label3.Location = new System.Drawing.Point(8, 129);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 25);
             this.label3.TabIndex = 8;
@@ -118,31 +117,14 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Coach";
             // 
-            // addCoachButton
+            // teamNameTextBox
             // 
-            this.addCoachButton.Location = new System.Drawing.Point(278, 175);
-            this.addCoachButton.Name = "addCoachButton";
-            this.addCoachButton.Size = new System.Drawing.Size(101, 23);
-            this.addCoachButton.TabIndex = 11;
-            this.addCoachButton.Text = "Add Coach";
-            this.addCoachButton.UseVisualStyleBackColor = true;
-            // 
-            // addStadiumButton
-            // 
-            this.addStadiumButton.Location = new System.Drawing.Point(278, 135);
-            this.addStadiumButton.Name = "addStadiumButton";
-            this.addStadiumButton.Size = new System.Drawing.Size(101, 23);
-            this.addStadiumButton.TabIndex = 12;
-            this.addStadiumButton.Text = "Add Stadium";
-            this.addStadiumButton.UseVisualStyleBackColor = true;
-            // 
-            // teamNametextBox
-            // 
-            this.teamNametextBox.Location = new System.Drawing.Point(75, 11);
-            this.teamNametextBox.Name = "teamNametextBox";
-            this.teamNametextBox.ReadOnly = true;
-            this.teamNametextBox.Size = new System.Drawing.Size(304, 23);
-            this.teamNametextBox.TabIndex = 13;
+            this.teamNameTextBox.Location = new System.Drawing.Point(75, 11);
+            this.teamNameTextBox.Name = "teamNameTextBox";
+            this.teamNameTextBox.ReadOnly = true;
+            this.teamNameTextBox.Size = new System.Drawing.Size(304, 23);
+            this.teamNameTextBox.TabIndex = 13;
+            this.teamNameTextBox.TextChanged += new System.EventHandler(this.teamNametextBox_TextChanged);
             // 
             // abbreviationTextBox
             // 
@@ -152,30 +134,22 @@
             this.abbreviationTextBox.Size = new System.Drawing.Size(56, 23);
             this.abbreviationTextBox.TabIndex = 14;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(97, 90);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(282, 23);
-            this.textBox1.TabIndex = 15;
-            // 
             // stadiumComboBox
             // 
             this.stadiumComboBox.Enabled = false;
             this.stadiumComboBox.FormattingEnabled = true;
-            this.stadiumComboBox.Location = new System.Drawing.Point(98, 135);
+            this.stadiumComboBox.Location = new System.Drawing.Point(87, 133);
             this.stadiumComboBox.Name = "stadiumComboBox";
-            this.stadiumComboBox.Size = new System.Drawing.Size(174, 23);
+            this.stadiumComboBox.Size = new System.Drawing.Size(292, 23);
             this.stadiumComboBox.TabIndex = 16;
             // 
             // coachComboBox
             // 
             this.coachComboBox.Enabled = false;
             this.coachComboBox.FormattingEnabled = true;
-            this.coachComboBox.Location = new System.Drawing.Point(83, 175);
+            this.coachComboBox.Location = new System.Drawing.Point(75, 175);
             this.coachComboBox.Name = "coachComboBox";
-            this.coachComboBox.Size = new System.Drawing.Size(189, 23);
+            this.coachComboBox.Size = new System.Drawing.Size(304, 23);
             this.coachComboBox.TabIndex = 17;
             // 
             // lineupsHomeDataGridView
@@ -211,19 +185,26 @@
             this.nameHome.ReadOnly = true;
             this.nameHome.Width = 313;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.Enabled = false;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(95, 87);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(284, 23);
+            this.comboBox1.TabIndex = 19;
+            // 
             // TeamForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(391, 574);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lineupsHomeDataGridView);
             this.Controls.Add(this.coachComboBox);
             this.Controls.Add(this.stadiumComboBox);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.abbreviationTextBox);
-            this.Controls.Add(this.teamNametextBox);
-            this.Controls.Add(this.addStadiumButton);
-            this.Controls.Add(this.addCoachButton);
+            this.Controls.Add(this.teamNameTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -234,6 +215,7 @@
             this.Name = "TeamForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Team";
+            this.Load += new System.EventHandler(this.TeamForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lineupsHomeDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -249,15 +231,13 @@
         private Label label3;
         private Label label4;
         private Label label5;
-        private Button addCoachButton;
-        private Button addStadiumButton;
-        private TextBox teamNametextBox;
+        private TextBox teamNameTextBox;
         private TextBox abbreviationTextBox;
-        private TextBox textBox1;
         private ComboBox stadiumComboBox;
         private ComboBox coachComboBox;
         private DataGridView lineupsHomeDataGridView;
         private DataGridViewTextBoxColumn homePosition;
         private DataGridViewTextBoxColumn nameHome;
+        private ComboBox comboBox1;
     }
 }
