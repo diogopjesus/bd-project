@@ -1,4 +1,6 @@
 # Football Database
+Project developed for the 'Databases' course. Written in TSQL database-wise and c# interface-wise.
+
 
 # Notes
 
