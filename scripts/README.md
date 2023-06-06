@@ -12,7 +12,7 @@ Para poder colocar o ambiente como foi testado deve correr os scripts deste dire
 - stored\_procedure\_FootballDatabase.sql - Deve correr cada stored\_procedure individualmente e não o script todo de uma vez
 
 ## Alguma Informação relevante
-A informação do insert_FootballDatabase.sql é toda real exceptuando a informação relacionada com os jogos.
+A informação do insert\_FootballDatabase.sql é toda real exceptuando a informação relacionada com os jogos.
 Essa informação foi obtida através de scraping do site [sofifa.com](sofifa.com) por um script escrito em python.
 Os comandos foram depois gerados automaticamente de acordo com essa informação retirada.
 A informação é relevante à primeira liga de futebol portuguesa de 2021/2022.
